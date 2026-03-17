@@ -1,10 +1,13 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
 
-@app.route("/tasks", methods=['GET'])
+@app.route("/tasks", methods=['GET','POST'])
 def get_tasks():
-    return jsonify(tasks)
+    if request.method == 'POST':
+        return 'Adding a new task to the todo list'
+    else:
+        return jsonify(tasks)
 
 @app.route("/")
 def put_task():
